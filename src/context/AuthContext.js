@@ -8,7 +8,7 @@ const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   //
   const [jobs, setJobs] = useState([]);
-
+  // console.log(user, "user from AuthContext");
   //
   async function fetchJobs() {
     try {
