@@ -2,9 +2,9 @@ import React, { useEffect, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 //
 const Job = ({ job }) => {
-  const { user, url } = useContext(AuthContext);
+  const { user, url, fetchJobs } = useContext(AuthContext);
   //
-  const applyHandler = async () => {
+  const fetchApiOfApply = async () => {
     try {
       const response = await fetch(`${url}/jobs/apply/${job._id}`, {
         method: "POST",
@@ -29,6 +29,12 @@ const Job = ({ job }) => {
     }
   };
   //
+  const applyHandler = async () => {
+    fetchApiOfApply();
+    //
+    fetchJobs();
+  };
+  //
   return (
     <div key={job._id}>
       <h4>{job.title}</h4>
@@ -37,7 +43,10 @@ const Job = ({ job }) => {
       <p>Posted on : {job.createdAt}</p>
       <p>Total applicant:{job.appliedBy.length}</p>
       {/*  */}
-      <button onClick={applyHandler}>Apply</button>
+      {/* <button onClick={applyHandler}>Apply</button> */}
+      {user.userType === "applicant" && ( // Conditionally render the Apply button
+        <button onClick={applyHandler}>Apply</button>
+      )}
     </div>
   );
 };
