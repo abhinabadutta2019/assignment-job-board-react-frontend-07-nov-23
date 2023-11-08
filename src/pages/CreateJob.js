@@ -1,5 +1,5 @@
 const CreateJob = () => {
-  return <></>;
+  return <>Create Job</>;
 };
 
 export default CreateJob;

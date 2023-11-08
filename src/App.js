@@ -23,6 +23,18 @@ function App() {
               path="/"
               element={user ? <Home /> : <Navigate to="/auth" />}
             />
+            {/*  */}
+            <Route
+              path="/create-job"
+              element={
+                user?.userType === "jobcreator" ? (
+                  <CreateJob />
+                ) : (
+                  <Navigate to="/" />
+                )
+              }
+            />
+            {/*  */}
 
             {/* <Route path="/" element={<Home />} /> */}
             <Route

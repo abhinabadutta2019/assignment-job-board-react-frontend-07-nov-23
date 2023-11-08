@@ -25,9 +25,14 @@ const AuthContextProvider = ({ children }) => {
     const fetchUserLS = async () => {
       try {
         // console.log("calling fetchUserLS ");
-        const user = localStorage.getItem("user");
+        // const user = localStorage.getItem("user");
+        // setUser(user);
+        const userJSON = localStorage.getItem("user");
+        if (userJSON) {
+          const user = JSON.parse(userJSON);
+          setUser(user);
+        }
         //
-        setUser(user);
       } catch (err) {
         console.error("Error fetching data in AuthContext:", err);
       }
