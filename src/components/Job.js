@@ -47,6 +47,10 @@ const Job = ({ job }) => {
       {user.userType === "applicant" && ( // Conditionally render the Apply button
         <button onClick={applyHandler}>Apply</button>
       )}
+      {/* if the job has applicant only show then */}
+      {user.userType === "jobcreator" && job.appliedBy.length > 0 && (
+        <button>View Apllicants</button>
+      )}
     </div>
   );
 };
