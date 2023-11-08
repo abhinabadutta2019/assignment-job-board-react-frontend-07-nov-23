@@ -95,7 +95,7 @@ const Auth = () => {
   //
   return (
     <div>
-      <h1>Auth</h1>
+      <h1>WorkWave Auth</h1>
       {/*  */}
       <div>
         <button onClick={toggleForm}>
