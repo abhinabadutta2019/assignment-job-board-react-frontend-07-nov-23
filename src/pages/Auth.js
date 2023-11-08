@@ -69,7 +69,14 @@ const Auth = () => {
           login(registrationResult);
         }
       } else {
-        window.alert("Registration failed. Please check your input.");
+        //zod error showing with this
+        if (response.status === 401) {
+          // Handle validation error
+          const errorResponse = await response.json();
+          window.alert(errorResponse.error);
+        } else {
+          window.alert("Registration failed. Please check your input.");
+        }
       }
     } catch (err) {
       console.log(err);
