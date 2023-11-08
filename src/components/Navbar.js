@@ -13,7 +13,7 @@ const Navbar = () => {
       {user && (
         <>
           <Link to="/">
-            <h2>My App Title</h2>
+            <h2>WorkWave</h2>
           </Link>
           {/*  */}
           {user?.userType === "jobcreator" && (
