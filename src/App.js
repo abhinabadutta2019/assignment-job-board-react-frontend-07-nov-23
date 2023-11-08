@@ -5,6 +5,8 @@ import { AuthContext } from "./context/AuthContext";
 import Auth from "./pages/Auth";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import CreateJob from "./pages/CreateJob";
+import YourAppliedJobs from "./pages/YourAppliedJobs";
 function App() {
   //
   //
