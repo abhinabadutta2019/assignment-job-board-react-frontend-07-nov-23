@@ -10,7 +10,7 @@ const AuthContextProvider = ({ children }) => {
   const [jobs, setJobs] = useState([]);
   // console.log(user, "user from AuthContext");
   //
-  async function fetchJobs() {
+  const fetchJobs = async () => {
     try {
       const response = await fetch(`${url}/jobs`, {
         method: "GET",
@@ -27,7 +27,7 @@ const AuthContextProvider = ({ children }) => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  }
+  };
   //
   const login = (userData) => {
     localStorage.setItem("user", JSON.stringify(userData));
