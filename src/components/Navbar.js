@@ -30,7 +30,10 @@ const Navbar = () => {
 
           {/*  */}
 
-          <button onClick={logout}>Logout</button>
+          {/* <button onClick={logout}>Logout</button> */}
+          <Link to="/" onClick={() => logout()}>
+            Logout
+          </Link>
         </>
       )}
       {!user && (
