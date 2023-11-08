@@ -1,9 +1,12 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 const Auth = () => {
   //
   const { login, url } = useContext(AuthContext);
+  //
+  // State to track which form is currently visible
+  const [isLoginForm, setIsLoginForm] = useState(true);
   //
   const loginHandler = async (event) => {
     event.preventDefault();
@@ -36,6 +39,11 @@ const Auth = () => {
       // Show a generic error alert for network or other errors
       window.alert("An error occurred. Please try again.");
     }
+  };
+  //
+  const toggleForm = () => {
+    // Toggle between login and registration forms
+    setIsLoginForm((prevIsLoginForm) => !prevIsLoginForm);
   };
   //
   const registrationHandler = async (event) => {
@@ -88,32 +96,45 @@ const Auth = () => {
   return (
     <div>
       <h1>Auth</h1>
-      <h2>Login form</h2>
-      <form onSubmit={loginHandler}>
-        {/* <form> */}
-        <label>email</label>
-        <input id="loginEmail" type="text" required />
-        <label>Password</label>
-        <input id="loginPassword" type="text" required />
-        <button type="submit">Login</button>
-      </form>
       {/*  */}
-      <h2>Registration form</h2>
-      <form onSubmit={registrationHandler}>
-        <label>Email</label>
-        <input id="registrationEmail" type="text" required />
-        <label>Password</label>
-        <input id="registrationPassword" type="text" required />
-        <label>CV url</label>
-        <input id="registrationCV" type="text" required />
-        <label>Select User Type</label>
-        <select id="userType">
-          <option value="applicant">Applicant</option>
-          <option value="jobcreator">Job Creator</option>
-        </select>
+      <div>
+        <button onClick={toggleForm}>
+          {isLoginForm ? "Switch to Registration" : "Switch to Login"}
+        </button>
+      </div>
+      {/*  */}
+      {isLoginForm ? (
+        <div>
+          <h2>Login form</h2>
+          <form onSubmit={loginHandler}>
+            {/* <form> */}
+            <label>email</label>
+            <input id="loginEmail" type="text" required />
+            <label>Password</label>
+            <input id="loginPassword" type="text" required />
+            <button type="submit">Login</button>
+          </form>
+        </div>
+      ) : (
+        <div>
+          <h2>Registration form</h2>
+          <form onSubmit={registrationHandler}>
+            <label>Email</label>
+            <input id="registrationEmail" type="text" required />
+            <label>Password</label>
+            <input id="registrationPassword" type="text" required />
+            <label>CV url</label>
+            <input id="registrationCV" type="text" required />
+            <label>Select User Type</label>
+            <select id="userType">
+              <option value="applicant">Applicant</option>
+              <option value="jobcreator">Job Creator</option>
+            </select>
 
-        <button type="submit">Register</button>
-      </form>
+            <button type="submit">Register</button>
+          </form>
+        </div>
+      )}
     </div>
   );
 };
