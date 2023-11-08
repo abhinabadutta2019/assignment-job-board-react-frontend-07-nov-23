@@ -6,7 +6,28 @@ const AuthContextProvider = ({ children }) => {
   const url = "http://localhost:3008";
   //
   const [user, setUser] = useState(null);
+  //
+  const [jobs, setJobs] = useState([]);
 
+  //
+  async function fetchJobs() {
+    try {
+      const response = await fetch(`${url}/jobs`, {
+        method: "GET",
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      //
+      console.log(data, "data");
+      //
+      setJobs(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
   //
   const login = (userData) => {
     localStorage.setItem("user", JSON.stringify(userData));
@@ -47,7 +68,9 @@ const AuthContextProvider = ({ children }) => {
 
   return (
     <>
-      <AuthContext.Provider value={{ user, login, url, logout }}>
+      <AuthContext.Provider
+        value={{ user, login, url, logout, jobs, fetchJobs }}
+      >
         {children}
       </AuthContext.Provider>
     </>
