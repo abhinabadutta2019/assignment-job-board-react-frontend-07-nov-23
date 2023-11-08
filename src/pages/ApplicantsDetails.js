@@ -1,23 +1,50 @@
 //
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 //
 
 const ApplicantsDetails = () => {
   const { jobId } = useParams();
   const [applicants, setApplicants] = useState([]);
+  const { user, url, logout } = useContext(AuthContext);
+  //
+  const fetchAppliedUsersDetails = async () => {
+    try {
+      const response = await fetch(`${url}/jobs/appliedUsers/${jobId}`, {
+        method: "GET",
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      //
+      console.log(data, "from ApplicantsDetails");
+      //
+      setApplicants(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
   //
   useEffect(() => {
-    // Make a request to the 'allAppliedUserDetail' route with 'jobId' and set the result in 'applicants' state
-    // You can use fetch or any other method you prefer
+    fetchAppliedUsersDetails();
   }, [jobId]);
   //
   return (
-    <>
-      Applicants Details
-      <div>{jobId}</div>
-    </>
+    <div>
+      <h2>Applicants Details</h2>
+      {/*  */}
+      <ul>
+        {applicants.map((applicant) => (
+          <li key={applicant.email}>
+            <p>User Email : {applicant.email}</p>
+            <p>user CV link : {applicant.cvUrl}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
