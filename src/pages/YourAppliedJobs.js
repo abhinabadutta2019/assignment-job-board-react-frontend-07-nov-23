@@ -1,5 +1,5 @@
 const YourAppliedJobs = () => {
-  return <></>;
+  return <>Your Applied Jobs</>;
 };
 
 export default YourAppliedJobs;

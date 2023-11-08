@@ -35,6 +35,16 @@ function App() {
               }
             />
             {/*  */}
+            <Route
+              path="/your-applied-job"
+              element={
+                user?.userType === "applicant" ? (
+                  <YourAppliedJobs />
+                ) : (
+                  <Navigate to="/" />
+                )
+              }
+            />
 
             {/* <Route path="/" element={<Home />} /> */}
             <Route

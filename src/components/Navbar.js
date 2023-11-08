@@ -19,6 +19,10 @@ const Navbar = () => {
           {user?.userType === "jobcreator" && (
             <Link to="/create-job">Create Job</Link>
           )}
+          {/*  */}
+          {user?.userType === "applicant" && (
+            <Link to="/your-applied-job">Your applied Jobs</Link>
+          )}
 
           {/*  */}
 
