@@ -30,9 +30,9 @@ const Job = ({ job }) => {
   };
   //
   const applyHandler = async () => {
-    fetchApiOfApply();
+    await fetchApiOfApply();
     //
-    fetchJobs();
+    await fetchJobs();
   };
   //
   return (
