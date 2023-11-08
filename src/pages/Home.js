@@ -4,7 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 
 const Home = () => {
   //
-  const { user, jobs, fetchJobs } = useContext(AuthContext);
+  const { jobs, fetchJobs } = useContext(AuthContext);
 
   //   console.log(user, "use from Home ");
   //

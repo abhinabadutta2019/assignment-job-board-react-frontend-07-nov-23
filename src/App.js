@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import CreateJob from "./pages/CreateJob";
 import YourAppliedJobs from "./pages/YourAppliedJobs";
 import YourCreatedJobs from "./pages/YourCreatedJobs";
+import ApplicantsDetails from "./pages/ApplicantsDetails";
 function App() {
   //
   //
@@ -41,6 +42,17 @@ function App() {
               element={
                 user?.userType === "jobcreator" ? (
                   <YourCreatedJobs />
+                ) : (
+                  <Navigate to="/" />
+                )
+              }
+            />
+            {/*  */}
+            <Route
+              path="/applicant-details"
+              element={
+                user?.userType === "jobcreator" ? (
+                  <ApplicantsDetails />
                 ) : (
                   <Navigate to="/" />
                 )

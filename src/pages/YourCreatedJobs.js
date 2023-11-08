@@ -3,8 +3,7 @@ import Job from "../components/Job";
 import { AuthContext } from "../context/AuthContext";
 const YourCreatedJobs = () => {
   //
-  const { user, yourCreatedJobs, fetchYourCreatedJobs } =
-    useContext(AuthContext);
+  const { yourCreatedJobs, fetchYourCreatedJobs } = useContext(AuthContext);
   //
   useEffect(() => {
     fetchYourCreatedJobs();
