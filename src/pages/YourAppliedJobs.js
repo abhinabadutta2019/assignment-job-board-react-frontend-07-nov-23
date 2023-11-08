@@ -41,7 +41,7 @@ const YourAppliedJobs = () => {
         {appliedJobs.map((job) => (
           <li key={job._id}>
             <h4>{job.title}</h4>
-            <p>{job.description}</p>
+            <p>Details : {job.description}</p>
           </li>
         ))}
       </ul>
