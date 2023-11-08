@@ -41,6 +41,7 @@ const YourAppliedJobs = () => {
         {appliedJobs.map((job) => (
           <li key={job._id}>
             <h4>{job.title}</h4>
+            <p>Contact : {job.createdBy.email} </p>
             <p>Details : {job.description}</p>
           </li>
         ))}
