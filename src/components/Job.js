@@ -1,8 +1,18 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 //
 const Job = ({ job }) => {
   const { user, url, fetchJobs } = useContext(AuthContext);
+  const navigate = useNavigate(); // Use useNavigate
+
+  //
+  const viewApplicants = () => {
+    const jobId = job._id;
+    navigate(`/applicant-details/${jobId}`);
+  };
+  //
+
   //
   const fetchApiOfApply = async () => {
     try {
@@ -49,7 +59,7 @@ const Job = ({ job }) => {
       )}
       {/* if the job has applicant only show then */}
       {user.userType === "jobcreator" && job.appliedBy.length > 0 && (
-        <button>View Apllicants</button>
+        <button onClick={viewApplicants}>View Apllicants</button>
       )}
     </div>
   );

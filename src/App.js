@@ -49,7 +49,7 @@ function App() {
             />
             {/*  */}
             <Route
-              path="/applicant-details"
+              path="/applicant-details/:jobId"
               element={
                 user?.userType === "jobcreator" ? (
                   <ApplicantsDetails />
