@@ -9,6 +9,7 @@ import CreateJob from "./pages/CreateJob";
 import YourAppliedJobs from "./pages/YourAppliedJobs";
 import YourCreatedJobs from "./pages/YourCreatedJobs";
 import ApplicantsDetails from "./pages/ApplicantsDetails";
+import NotFound from "./pages/NotFound";
 function App() {
   //
   //
@@ -69,12 +70,14 @@ function App() {
                 )
               }
             />
-
             {/* <Route path="/" element={<Home />} /> */}
             <Route
               path="/auth"
               element={!user ? <Auth /> : <Navigate to="/" />}
             />
+            {/*  */}
+            <Route path="*" element={<NotFound />} />
+            {/*  */}
           </Routes>
         </div>
       </BrowserRouter>
