@@ -43,7 +43,7 @@ const AuthContextProvider = ({ children }) => {
     // calling the function-
     fetchUserLS();
     //
-  }, [user]);
+  }, []);
 
   return (
     <>
