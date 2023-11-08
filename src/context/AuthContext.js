@@ -10,6 +10,8 @@ const AuthContextProvider = ({ children }) => {
   const [jobs, setJobs] = useState([]);
   // console.log(user, "user from AuthContext");
   //
+  const [yourCreatedJobs, setYourCreatedJobs] = useState([]);
+  //
   const fetchJobs = async () => {
     try {
       const response = await fetch(`${url}/jobs`, {
@@ -24,6 +26,25 @@ const AuthContextProvider = ({ children }) => {
       console.log(data, "data");
       //
       setJobs(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  //
+  const fetchYourCreatedJobs = async () => {
+    try {
+      const response = await fetch(`${url}/jobs/yourCreatedJobs/${user.id}`, {
+        method: "GET",
+        headers: { Authorization: `Bearer ${user.token}` },
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      //
+      console.log(data, "data");
+      //
+      setYourCreatedJobs(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -69,7 +90,16 @@ const AuthContextProvider = ({ children }) => {
   return (
     <>
       <AuthContext.Provider
-        value={{ user, login, url, logout, jobs, fetchJobs }}
+        value={{
+          user,
+          login,
+          url,
+          logout,
+          jobs,
+          fetchJobs,
+          yourCreatedJobs,
+          fetchYourCreatedJobs,
+        }}
       >
         {children}
       </AuthContext.Provider>
