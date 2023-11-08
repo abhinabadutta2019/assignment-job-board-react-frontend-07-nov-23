@@ -2,7 +2,11 @@ import { createContext, useState, useEffect } from "react";
 const AuthContext = createContext();
 //
 const AuthContextProvider = ({ children }) => {
+  //
+  const url = "http://localhost:3008";
+  //
   const [user, setUser] = useState(null);
+
   //
   const login = (userData) => {
     localStorage.setItem("user", JSON.stringify(userData));
@@ -32,7 +36,7 @@ const AuthContextProvider = ({ children }) => {
 
   return (
     <>
-      <AuthContext.Provider value={{ user, login }}>
+      <AuthContext.Provider value={{ user, login, url }}>
         {children}
       </AuthContext.Provider>
     </>
