@@ -7,7 +7,7 @@ import { AuthContext } from "../context/AuthContext";
 const ApplicantsDetails = () => {
   const { jobId } = useParams();
   const [applicants, setApplicants] = useState([]);
-  const { user, url, logout } = useContext(AuthContext);
+  const { user, url } = useContext(AuthContext);
   //
   const fetchAppliedUsersDetails = async () => {
     try {
