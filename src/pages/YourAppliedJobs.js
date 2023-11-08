@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 const YourAppliedJobs = () => {
-  const { user, url, jobs, fetchJobs } = useContext(AuthContext);
+  const { user, url } = useContext(AuthContext);
 
   // Define a state variable to store the applied jobs data
   const [appliedJobs, setAppliedJobs] = useState([]);
