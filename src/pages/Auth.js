@@ -1,13 +1,12 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { Button, Form, Container, Col, Row } from "react-bootstrap";
 
 const Auth = () => {
-  //
   const { login, url } = useContext(AuthContext);
-  //
-  // State to track which form is currently visible
+
   const [isLoginForm, setIsLoginForm] = useState(true);
-  //
+
   const loginHandler = async (event) => {
     event.preventDefault();
 
@@ -31,30 +30,25 @@ const Auth = () => {
           login(loginResult);
         }
       } else {
-        // Show an alert for login error
         window.alert("Login failed. Please check your username and password.");
       }
     } catch (err) {
       console.log(err);
-      // Show a generic error alert for network or other errors
       window.alert("An error occurred. Please try again.");
     }
   };
-  //
+
   const toggleForm = () => {
-    // Toggle between login and registration forms
     setIsLoginForm((prevIsLoginForm) => !prevIsLoginForm);
   };
-  //
+
   const registrationHandler = async (event) => {
     event.preventDefault();
 
     const email = document.getElementById("registrationEmail").value;
     const password = document.getElementById("registrationPassword").value;
-    //
     const cvUrl = document.getElementById("registrationCV").value;
-    //
-    const userType = document.getElementById("userType").value; // Get the selected user type
+    const userType = document.getElementById("userType").value;
 
     try {
       const response = await fetch(`${url}/users`, {
@@ -64,11 +58,9 @@ const Auth = () => {
           email: email,
           password: password,
           cvUrl: cvUrl,
-          userType: userType, // Include the selected user type
+          userType: userType,
         }),
       });
-
-      console.log(response, "response");
 
       if (response.ok) {
         const registrationResult = await response.json();
@@ -77,9 +69,7 @@ const Auth = () => {
           login(registrationResult);
         }
       } else {
-        //zod error showing with this
         if (response.status === 401) {
-          // Handle validation error
           const errorResponse = await response.json();
           window.alert(errorResponse.error);
         } else {
@@ -92,50 +82,67 @@ const Auth = () => {
     }
   };
 
-  //
   return (
-    <div>
-      <h1>WorkWave Auth</h1>
-      {/*  */}
-      <div>
-        <button onClick={toggleForm}>
-          {isLoginForm ? "Switch to Registration" : "Switch to Login"}
-        </button>
-      </div>
-      {/*  */}
+    <Container>
+      <h1 className="mt-4">WorkWave Auth</h1>
+      <Row>
+        <Col md={4} className="mt-4">
+          <Button onClick={toggleForm} variant="primary">
+            {isLoginForm ? "Switch to Registration" : "Switch to Login"}
+          </Button>
+        </Col>
+      </Row>
       {isLoginForm ? (
-        <div>
-          <h2>Login form</h2>
-          <form onSubmit={loginHandler}>
-            {/* <form> */}
-            <label>email</label>
-            <input id="loginEmail" type="text" required />
-            <label>Password</label>
-            <input id="loginPassword" type="text" required />
-            <button type="submit">Login</button>
-          </form>
-        </div>
+        <Row>
+          <Col md={4}>
+            <h2>Login form</h2>
+            <Form onSubmit={loginHandler}>
+              <Form.Group controlId="loginEmail">
+                <Form.Label>Email</Form.Label>
+                <Form.Control type="text" required />
+              </Form.Group>
+              <Form.Group controlId="loginPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="text" required />
+              </Form.Group>
+              <Button type="submit" variant="success">
+                Login
+              </Button>
+            </Form>
+          </Col>
+        </Row>
       ) : (
-        <div>
-          <h2>Registration form</h2>
-          <form onSubmit={registrationHandler}>
-            <label>Email</label>
-            <input id="registrationEmail" type="text" required />
-            <label>Password</label>
-            <input id="registrationPassword" type="text" required />
-            <label>CV url</label>
-            <input id="registrationCV" type="text" required />
-            <label>Select User Type</label>
-            <select id="userType">
-              <option value="applicant">Applicant</option>
-              <option value="jobcreator">Job Creator</option>
-            </select>
-
-            <button type="submit">Register</button>
-          </form>
-        </div>
+        <Row>
+          <Col md={4}>
+            <h2>Registration form</h2>
+            <Form onSubmit={registrationHandler}>
+              <Form.Group controlId="registrationEmail">
+                <Form.Label>Email</Form.Label>
+                <Form.Control type="text" required />
+              </Form.Group>
+              <Form.Group controlId="registrationPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="text" required />
+              </Form.Group>
+              <Form.Group controlId="registrationCV">
+                <Form.Label>CV URL</Form.Label>
+                <Form.Control type="text" required />
+              </Form.Group>
+              <Form.Group controlId="userType">
+                <Form.Label>Select User Type</Form.Label>
+                <Form.Control as="select">
+                  <option value="applicant">Applicant</option>
+                  <option value="jobcreator">Job Creator</option>
+                </Form.Control>
+              </Form.Group>
+              <Button type="submit" variant="success">
+                Register
+              </Button>
+            </Form>
+          </Col>
+        </Row>
       )}
-    </div>
+    </Container>
   );
 };
 
