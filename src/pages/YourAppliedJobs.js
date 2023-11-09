@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { Container, Card, ListGroup } from "react-bootstrap";
 
 const YourAppliedJobs = () => {
   const { user, url } = useContext(AuthContext);
@@ -33,20 +34,19 @@ const YourAppliedJobs = () => {
 
     fetchAppliedJobs(); // Call the fetch function when the component mounts
   }, []);
-
   return (
-    <>
-      <h2>Your Applied Jobs</h2>
-      <ul>
-        {appliedJobs.map((job) => (
-          <li key={job._id}>
-            <h4>{job.title}</h4>
-            <p>Contact : {job.createdBy.email} </p>
-            <p>Details : {job.description}</p>
-          </li>
-        ))}
-      </ul>
-    </>
+    <Container>
+      <h2 className="mt-4">Your Applied Jobs</h2>
+      {appliedJobs.map((job) => (
+        <Card key={job._id} className="mb-3">
+          <Card.Body>
+            <Card.Title>{job.title}</Card.Title>
+            <Card.Text>Contact: {job.createdBy.email}</Card.Text>
+            <Card.Text>Details: {job.description}</Card.Text>
+          </Card.Body>
+        </Card>
+      ))}
+    </Container>
   );
 };
 
