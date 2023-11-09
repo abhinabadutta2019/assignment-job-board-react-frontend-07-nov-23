@@ -3,7 +3,8 @@ const AuthContext = createContext();
 //
 const AuthContextProvider = ({ children }) => {
   //
-  const url = "http://localhost:3008";
+  // const url = "http://localhost:3008";
+  const url = "https://assignment-job-board-typescript-backend.onrender.com";
   //
   const [user, setUser] = useState(null);
   //
