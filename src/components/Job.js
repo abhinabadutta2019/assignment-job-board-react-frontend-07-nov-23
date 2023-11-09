@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 //
+import { Button, Card } from "react-bootstrap";
+//
 const Job = ({ job }) => {
   const { user, url, fetchJobs } = useContext(AuthContext);
   const navigate = useNavigate(); // Use useNavigate
@@ -46,22 +48,26 @@ const Job = ({ job }) => {
   };
   //
   return (
-    <div key={job._id}>
-      <h4>{job.title}</h4>
-      <p>Posted by email : {job.createdBy.email}</p>
-      <p>Description:{job.description}</p>
-      <p>Posted on : {job.createdAt}</p>
-      <p>Total applicant:{job.appliedBy.length}</p>
-      {/*  */}
-      {/* <button onClick={applyHandler}>Apply</button> */}
-      {user.userType === "applicant" && ( // Conditionally render the Apply button
-        <button onClick={applyHandler}>Apply</button>
-      )}
-      {/* if the job has applicant only show then */}
-      {user.userType === "jobcreator" && job.appliedBy.length > 0 && (
-        <button onClick={viewApplicants}>View Apllicants</button>
-      )}
-    </div>
+    <Card key={job._id}>
+      <Card.Body>
+        <Card.Title>{job.title}</Card.Title>
+        <Card.Text>Posted by email: {job.createdBy.email}</Card.Text>
+        <Card.Text>Description: {job.description}</Card.Text>
+        <Card.Text>Posted on: {job.createdAt}</Card.Text>
+        <Card.Text>Total applicants: {job.appliedBy.length}</Card.Text>
+
+        {user.userType === "applicant" && ( // Conditionally render the Apply button
+          <Button variant="primary" onClick={applyHandler}>
+            Apply
+          </Button>
+        )}
+        {user.userType === "jobcreator" && job.appliedBy.length > 0 && (
+          <Button variant="secondary" onClick={viewApplicants}>
+            View Applicants
+          </Button>
+        )}
+      </Card.Body>
+    </Card>
   );
 };
 

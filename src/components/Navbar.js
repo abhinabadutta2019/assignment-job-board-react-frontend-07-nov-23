@@ -1,48 +1,36 @@
-// import { Link, useNavigate, NavLink } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Navbar, Nav, NavDropdown, Button } from "react-bootstrap";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-const Navbar = () => {
-  //
+
+const AppNavbar = () => {
   const { user, logout } = useContext(AuthContext);
-  //
-  //   const navigate = useNavigate();
-  //
+
   return (
-    <>
-      {user && (
-        <>
-          <Link to="/">
-            <h2>WorkWave</h2>
-          </Link>
-          {/*  */}
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand href="/">WorkWave</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
           {user?.userType === "jobcreator" && (
-            <Link to="/create-job">Create Job</Link>
+            <Nav.Link href="/create-job">Create Job</Nav.Link>
           )}
-          {/*  */}
           {user?.userType === "jobcreator" && (
-            <Link to="/your-created-jobs">Your Created jobs</Link>
+            <Nav.Link href="/your-created-jobs">Your Created jobs</Nav.Link>
           )}
-          {/*  */}
           {user?.userType === "applicant" && (
-            <Link to="/your-applied-job">Your applied Jobs</Link>
+            <Nav.Link href="/your-applied-job">Your Applied Jobs</Nav.Link>
           )}
-
-          {/*  */}
-
-          {/* <button onClick={logout}>Logout</button> */}
-          <Link to="/" onClick={() => logout()}>
+        </Nav>
+        {user ? (
+          <Button variant="outline-primary" onClick={logout}>
             Logout
-          </Link>
-        </>
-      )}
-      {!user && (
-        <>
-          <Link to="/auth">Auth</Link>
-        </>
-      )}
-    </>
+          </Button>
+        ) : (
+          <Nav.Link href="/auth">Auth</Nav.Link>
+        )}
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default AppNavbar;
