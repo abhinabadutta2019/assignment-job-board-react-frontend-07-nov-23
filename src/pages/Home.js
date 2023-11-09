@@ -1,29 +1,28 @@
 import React, { useEffect, useContext } from "react";
 import Job from "../components/Job";
 import { AuthContext } from "../context/AuthContext";
+import { Container } from "react-bootstrap";
 
 const Home = () => {
-  //
   const { jobs, fetchJobs } = useContext(AuthContext);
 
-  //   console.log(user, "use from Home ");
-  //
   useEffect(() => {
     fetchJobs();
   }, []);
-  //
-  //
+
   return (
-    <>
-      <h2>Home</h2>
-      <ul>
-        {jobs.length > 0 ? (
-          jobs.map((job) => <Job key={job._id} job={job} />)
-        ) : (
-          <p>No jobs available</p>
-        )}
-      </ul>
-    </>
+    <Container>
+      <h2 className="mt-4">Home</h2>
+      {jobs.length > 0 ? (
+        jobs.map((job) => (
+          <div key={job._id} className="mb-3">
+            <Job job={job} />
+          </div>
+        ))
+      ) : (
+        <p>No jobs available</p>
+      )}
+    </Container>
   );
 };
 

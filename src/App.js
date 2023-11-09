@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 
 import Auth from "./pages/Auth";
-import AppNavbar from "./components/Navbar";
+import MyNavbar from "./components/Navbar";
 import Home from "./pages/Home";
 import CreateJob from "./pages/CreateJob";
 import YourAppliedJobs from "./pages/YourAppliedJobs";
@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <AppNavbar />
+        <MyNavbar />
         <div className="pages">
           <Routes>
             {/* <Route path="/auth" element={<Auth />} /> */}
