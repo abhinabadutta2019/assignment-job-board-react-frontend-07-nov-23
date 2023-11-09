@@ -1,14 +1,13 @@
-//
-import { useParams } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-//
+import { useParams } from "react-router-dom";
+import { Container, ListGroup, ListGroupItem } from "react-bootstrap";
 
 const ApplicantsDetails = () => {
   const { jobId } = useParams();
   const [applicants, setApplicants] = useState([]);
   const { user, url } = useContext(AuthContext);
-  //
+
   const fetchAppliedUsersDetails = async () => {
     try {
       const response = await fetch(`${url}/jobs/appliedUsers/${jobId}`, {
@@ -19,32 +18,30 @@ const ApplicantsDetails = () => {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      //
-      console.log(data, "from ApplicantsDetails");
-      //
       setApplicants(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
-  //
+
   useEffect(() => {
     fetchAppliedUsersDetails();
   }, [jobId]);
-  //
+
   return (
-    <div>
+    <Container className="mt-4">
       <h2>Applicants Details</h2>
-      {/*  */}
-      <ul>
+      <ListGroup>
         {applicants.map((applicant) => (
-          <li key={applicant.email}>
-            <p>User Email : {applicant.email}</p>
-            <p>user CV link : {applicant.cvUrl}</p>
-          </li>
+          <ListGroupItem key={applicant.email}>
+            <h4>User Email:</h4>
+            <p>{applicant.email}</p>
+            <h4>User CV link:</h4>
+            <p>{applicant.cvUrl}</p>
+          </ListGroupItem>
         ))}
-      </ul>
-    </div>
+      </ListGroup>
+    </Container>
   );
 };
 
