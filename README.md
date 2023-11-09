@@ -62,6 +62,36 @@ The Job Board Web Application is a platform that connects job creators and appli
 - **Frontend Repository Link:** [GitHub Repository - Frontend](https://github.com/abhinabadutta2019/assignment-job-board-react-frontend-07-nov-23)
 - **Backend Repository Link:** [GitHub Repository - Backend](https://github.com/abhinabadutta2019/assignment-job-board-typescript-backend-07-nov-23)
 
+## Screenshots
+
+### Login page
+
+![image](https://github.com/abhinabadutta2019/assignment-job-board-react-frontend-07-nov-23/assets/118996650/005279f3-36cf-4dca-8b95-21b4eb711269)
+
+### Registration page
+
+![image](https://github.com/abhinabadutta2019/assignment-job-board-react-frontend-07-nov-23/assets/118996650/facb3b3e-9217-4e5d-b062-72cc718c8417)
+
+### Home page (For job poster)
+
+![image](https://github.com/abhinabadutta2019/assignment-job-board-react-frontend-07-nov-23/assets/118996650/6d460856-76a7-437d-ae10-f4fe42244fb3)
+
+### Home page (For applicants)
+
+![image](https://github.com/abhinabadutta2019/assignment-job-board-react-frontend-07-nov-23/assets/118996650/1ce7b69d-13c5-4ce6-bec6-eee14395973f)
+
+### Yourapplied-jobs page (For Applicants)
+
+![image](https://github.com/abhinabadutta2019/assignment-job-board-react-frontend-07-nov-23/assets/118996650/3b7529e0-8ecf-448b-8380-d89d73438b85)
+
+### Your-Created-Jobs page (For job poster)
+
+![image](https://github.com/abhinabadutta2019/assignment-job-board-react-frontend-07-nov-23/assets/118996650/9a94a49a-e592-40bf-bebf-d1eb84730794)
+
+### Applicants-details page (For job poster)
+
+![image](https://github.com/abhinabadutta2019/assignment-job-board-react-frontend-07-nov-23/assets/118996650/5cd68cd0-8aa3-4d68-b6cd-b29d24fdada9)
+
 ## Conclusion
 
 The Job Board Web Application provides an effective platform for job creators and applicants to connect, facilitating the job posting and application process.
